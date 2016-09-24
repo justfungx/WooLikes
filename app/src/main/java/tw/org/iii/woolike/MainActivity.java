@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 mDialog.dismiss();
                 mSwipeLayout.setRefreshing(false); //結束更新動畫
                 Toast.makeText(getApplicationContext(),
-                        "更新資料成功", Toast.LENGTH_LONG).show();
+                        "版面已刷新", Toast.LENGTH_LONG).show();
                 //Log.d("Hot Text:", response.toString());
 
                 mainAdapter.updateData(response.optJSONArray("list"));
