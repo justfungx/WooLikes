@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WooLike_News</string>
+    <string name="app_name">WooLike</string>
     <string name="activity_text">閱讀文章</string>
     <string name="HotTextTitle">熱門文章</string>
     <string name="BoardListTitle">熱門看板</string>

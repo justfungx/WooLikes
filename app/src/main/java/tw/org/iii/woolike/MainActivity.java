@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,12 +21,17 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
-        SwipeRefreshLayout.OnRefreshListener {
+        SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
 
     private ListView mainListView;
     private MainAdapter mainAdapter;
     private  ProgressDialog mDialog;
     private  SwipeRefreshLayout mSwipeLayout;
+    private Button btnHotText;
+    private  Button btnBoardList;
+//    private Intent boardListIntent;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +52,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mSwipeLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeColors(Color.BLUE);
+
+        btnHotText = (Button)findViewById(R.id.btn_HotText);
+        btnHotText.setOnClickListener(this);
+        btnBoardList =(Button)findViewById(R.id.btnBoardList);
+        btnBoardList.setOnClickListener(this);
+
+
 
     }
 
@@ -102,4 +115,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onRefresh() {
         loadData();
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btn_HotText:
+                loadData();
+                break;
+            case R.id.btnBoardList:
+                break;
+        }
+        Intent boardListIntent = new Intent(this,BoardListActivity.class);
+        boardListIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(boardListIntent);
+        overridePendingTransition(0,0);
+    }
+
 }

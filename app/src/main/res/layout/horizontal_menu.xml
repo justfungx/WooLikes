@@ -16,7 +16,7 @@
                 android:layout_height="36dp"
                 android:text="@string/HotTextTitle"
                 android:id="@+id/btn_HotText"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="#f86"
                 android:background="#000"
                 />
@@ -24,8 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:text="@string/BoardListTitle"
-                android:id="@+id/btn_BoardList"
-                android:textSize="18dp"
+                android:id="@+id/btnBoardList"
+                android:textSize="18sp"
                 android:textColor="#f86"
                 android:background="#ccc"
                 />
