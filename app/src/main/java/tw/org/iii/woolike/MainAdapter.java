@@ -13,43 +13,44 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 /**
  * Created by DUKE-KAO on 2016/9/24.
  */
 
-public class MainAdapter extends BaseAdapter{
+public class MainAdapter extends BaseAdapter {
     Context mContext;
-    LayoutInflater mInFlaster;
-    JSONArray mJsonrray;
+    LayoutInflater mInflater;
+    JSONArray mJsonArray;
 
-    private static class ViweHolder{
-        //存入row id
+    // 用來儲存row裡每個view的id，以免每次都要取一次
+    private static class ViewHolder {
         public ImageView thumbImageView;
-        public TextView  titleTextView;
-        public TextView  descTextView;
-
+        public TextView titleTextView;
+        public TextView descTextView;
     }
 
-    public  MainAdapter(Context context){
+    // 類別的建構子
+    public MainAdapter(Context context, LayoutInflater inflater) {
         mContext = context;
-        mInFlaster = LayoutInflater.from(mContext);
-        mJsonrray = new JSONArray();
+        mInflater = inflater;
+        mJsonArray = new JSONArray();
     }
+
     // 輸入JSON資料
-    public void updataData(JSONArray jsonArray){
-        mJsonrray = jsonArray;
+    public void updateData(JSONArray jsonArray) {
+        mJsonArray = jsonArray;
         notifyDataSetChanged();
     }
 
-
     @Override
     public int getCount() {
-       return  mJsonrray.length();
+        return mJsonArray.length();
     }
 
     @Override
     public Object getItem(int position) {
-        return mJsonrray.optJSONObject(position);
+        return mJsonArray.optJSONObject(position);
     }
 
     @Override
@@ -59,14 +60,14 @@ public class MainAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViweHolder holder;
+        ViewHolder holder;
 
-        // test view has null ture or false
+        // 檢查view是否已存在，如果已存在就不用再取一次id
         if (convertView == null) {
             // Inflate the custom row layout from your XML.
-            convertView = mInFlaster.inflate(R.layout.row_main, null);
+            convertView = mInflater.inflate(R.layout.row_main, null);
             // create a new "Holder" with subviews
-            holder = new ViweHolder();
+            holder = new ViewHolder();
             holder.thumbImageView = (ImageView) convertView.findViewById(R.id.img_thumb);
             holder.titleTextView = (TextView) convertView.findViewById(R.id.text_title);
             holder.descTextView = (TextView) convertView.findViewById(R.id.text_desc);
@@ -75,24 +76,24 @@ public class MainAdapter extends BaseAdapter{
         } else {
             // skip all the expensive inflation/findViewById
             // and just get the holder you already made
-            holder = (ViweHolder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         // 取得目前這個Row的JSON資料
         JSONObject jsonObject = (JSONObject) getItem(position);
 
-        String imageUrl = "";
+        Boolean hasThumb = false;
         if (jsonObject.has("img_list")) {
             JSONArray img_list = jsonObject.optJSONArray("img_list");
             if(img_list.length()!=0) {
-                imageUrl = img_list.optString(0);
+                String imageURL = img_list.optString(0);
+                // 使用 Picasso 來載入網路上的圖片
+                // 圖片載入前先用placeholder顯示預設圖片
+                Picasso.with(mContext).load(imageURL).placeholder(R.drawable.woolike300).into(holder.thumbImageView);
+                hasThumb = true;
             }
         }
-        if (!imageUrl.equals("")) {
-            // 使用 Picasso 來載入網路上的圖片
-            // 圖片載入前先用placeholder顯示預設圖片
-            Picasso.with(mContext).load(imageUrl).placeholder(R.drawable.woolike300).into(holder.thumbImageView);
-        } else { // 沒有縮圖的話放 logo
+        if(!hasThumb){ // 沒有縮圖的話放 disp logo
             holder.thumbImageView.setImageResource(R.drawable.woolike300);
         }
 
@@ -112,4 +113,5 @@ public class MainAdapter extends BaseAdapter{
 
         return convertView;
     }
+
 }
