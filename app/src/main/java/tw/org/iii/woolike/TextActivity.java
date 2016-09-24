@@ -2,6 +2,7 @@ package tw.org.iii.woolike;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -51,5 +52,15 @@ public class TextActivity extends AppCompatActivity {
         // 載入網址
         mWebView.loadUrl(url);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch ( item.getItemId()){
+            case android.R.id.home:
+                finish();
+                overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

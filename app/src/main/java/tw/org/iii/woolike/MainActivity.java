@@ -109,6 +109,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         // 使用準備好的 Intent 來開啟新的頁面
         startActivity(textIntent);
+        //改變進入畫面與離開畫面
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
     @Override
@@ -129,6 +131,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         boardListIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(boardListIntent);
         overridePendingTransition(0,0);
+
     }
+
 
 }
