@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 
 /**
  * Created by DUKE-KAO on 2016/9/25.
@@ -15,6 +16,7 @@ import android.widget.Button;
 public class BoardListActivity extends AppCompatActivity implements View.OnClickListener{
     private Button btnHotText;
     private Button btnBoardList;
+    private ListView mainListView;
 
     @Override
     public void onClick(View v) {
@@ -34,6 +36,11 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        //        //add listview footer
+//        View footerView = getLayoutInflater().inflate(R.layout.row_footer,null);
+//        mainListView.addFooterView(footerView);
+//        footerView.setOnClickListener(this);
 
         setContentView(R.layout.activity_boardlist);
 

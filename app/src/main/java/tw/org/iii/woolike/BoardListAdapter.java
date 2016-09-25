@@ -13,12 +13,11 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-
 /**
- * Created by DUKE-KAO on 2016/9/24.
+ * Created by DUKE-KAO on 2016/9/25.
  */
 
-public class MainAdapter extends BaseAdapter {
+public class BoardListAdapter extends BaseAdapter {
     private Context mContext;
     private LayoutInflater mInflater;
     private JSONArray mJsonArray;
@@ -31,7 +30,7 @@ public class MainAdapter extends BaseAdapter {
     }
 
     // 類別的建構子
-    public MainAdapter(Context context, LayoutInflater inflater) {
+    public BoardListAdapter(Context context, LayoutInflater inflater) {
         mContext = context;
         mInflater = inflater;
         mJsonArray = new JSONArray();
@@ -60,14 +59,14 @@ public class MainAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        BoardListAdapter.ViewHolder holder;
 
         // 檢查view是否已存在，如果已存在就不用再取一次id
         if (convertView == null) {
             // Inflate the custom row layout from your XML.
             convertView = mInflater.inflate(R.layout.row_main, null);
             // create a new "Holder" with subviews
-            holder = new ViewHolder();
+            holder = new BoardListAdapter.ViewHolder();
             holder.thumbImageView = (ImageView) convertView.findViewById(R.id.img_thumb);
             holder.titleTextView = (TextView) convertView.findViewById(R.id.text_title);
             holder.descTextView = (TextView) convertView.findViewById(R.id.text_desc);
@@ -76,7 +75,7 @@ public class MainAdapter extends BaseAdapter {
         } else {
             // skip all the expensive inflation/findViewById
             // and just get the holder you already made
-            holder = (ViewHolder) convertView.getTag();
+            holder = (BoardListAdapter.ViewHolder) convertView.getTag();
         }
 
         // 取得目前這個Row的JSON資料

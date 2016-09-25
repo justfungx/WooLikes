@@ -29,7 +29,15 @@
                 android:textColor="#f86"
                 android:background="#ccc"
                 />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/BoardListTitle"
+                android:id="@+id/btnSearch"
+                android:textSize="18sp"
+                android:textColor="#f86"
+                android:background="#ccc"
+                />
         </LinearLayout>
     </HorizontalScrollView>
     <View

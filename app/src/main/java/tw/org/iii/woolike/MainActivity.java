@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private  SwipeRefreshLayout mSwipeLayout;
     private Button btnHotText;
     private  Button btnBoardList;
+//    private View footView;
+//    private ListView mListView;
+
+
+
 //    private Intent boardListIntent;
 
 
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         mainListView = (ListView) findViewById(R.id.main_listview);
         mainAdapter = new MainAdapter(this, getLayoutInflater());
@@ -122,6 +129,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_HotText:
+            case R.id.row_footer:
+                //讀到listView 的 footer info
+                Log.d("DK","footer click OK");
+
                 loadData();
                 break;
             case R.id.btnBoardList:
