@@ -17,66 +17,49 @@ import org.json.JSONObject;
  * Created by DUKE-KAO on 2016/9/25.
  */
 
-public class BoardListAdapter extends BaseAdapter {
+public class BoardListAdapter extends BaseAdapter{
     private Context mContext;
     private LayoutInflater mInflater;
     private JSONArray mJsonArray;
 
-    // 用來儲存row裡每個view的id，以免每次都要取一次
-    private static class ViewHolder {
+    private static class  ViewHolder {
         public ImageView thumbImageView;
         public TextView titleTextView;
         public TextView descTextView;
     }
-
-    // 類別的建構子
-    public BoardListAdapter(Context context, LayoutInflater inflater) {
+    public BoardListAdapter(Context context){
         mContext = context;
-        mInflater = inflater;
+        mInflater = LayoutInflater.from(mContext);
         mJsonArray = new JSONArray();
     }
 
-    // 輸入JSON資料
-    public void updateData(JSONArray jsonArray) {
+    public  void updateData(JSONArray jsonArray){
         mJsonArray = jsonArray;
         notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
+
         return mJsonArray.length();
     }
 
     @Override
     public Object getItem(int position) {
+
         return mJsonArray.optJSONObject(position);
     }
 
     @Override
     public long getItemId(int position) {
+
         return position;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        BoardListAdapter.ViewHolder holder;
-
-        // 檢查view是否已存在，如果已存在就不用再取一次id
-        if (convertView == null) {
-            // Inflate the custom row layout from your XML.
-            convertView = mInflater.inflate(R.layout.row_main, null);
-            // create a new "Holder" with subviews
-            holder = new BoardListAdapter.ViewHolder();
-            holder.thumbImageView = (ImageView) convertView.findViewById(R.id.img_thumb);
-            holder.titleTextView = (TextView) convertView.findViewById(R.id.text_title);
-            holder.descTextView = (TextView) convertView.findViewById(R.id.text_desc);
-            // hang onto this holder for future recyclage
-            convertView.setTag(holder);
-        } else {
-            // skip all the expensive inflation/findViewById
-            // and just get the holder you already made
-            holder = (BoardListAdapter.ViewHolder) convertView.getTag();
-        }
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        ViewHolder holder = new ViewHolder();
 
         // 取得目前這個Row的JSON資料
         JSONObject jsonObject = (JSONObject) getItem(position);
@@ -112,5 +95,4 @@ public class BoardListAdapter extends BaseAdapter {
 
         return convertView;
     }
-
 }

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -27,6 +28,8 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
                 mainIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainIntent);
                 overridePendingTransition(0,0);
+            case R.id.row_footer:
+                Log.d("DK","footer click OK");
                 return;
             case R.id.btnBoardList:
                 return;

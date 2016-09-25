@@ -129,9 +129,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_HotText:
-            case R.id.row_footer:
-                //讀到listView 的 footer info
-                Log.d("DK","footer click OK");
+//            case R.id.row_footer:
+//                //讀到listView 的 footer info
+//                Log.d("DK","footer click OK");
 
                 loadData();
                 break;

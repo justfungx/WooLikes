@@ -62,6 +62,7 @@ public class MainAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
+
         // 檢查view是否已存在，如果已存在就不用再取一次id
         if (convertView == null) {
             // Inflate the custom row layout from your XML.
