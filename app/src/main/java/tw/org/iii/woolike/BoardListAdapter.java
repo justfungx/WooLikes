@@ -59,7 +59,25 @@ public class BoardListAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        ViewHolder holder = new ViewHolder();
+        ViewHolder holder ;
+
+
+        // 檢查view是否已存在，如果已存在就不用再取一次id
+        if (convertView == null) {
+            // Inflate the custom row layout from your XML.
+            convertView = mInflater.inflate(R.layout.row_board, null);
+            // create a new "Holder" with subviews
+            holder = new ViewHolder();
+            holder.thumbImageView = (ImageView) convertView.findViewById(R.id.img_thumb);
+            holder.titleTextView = (TextView) convertView.findViewById(R.id.text_title);
+            holder.descTextView = (TextView) convertView.findViewById(R.id.text_desc);
+            // hang onto this holder for future recyclage
+            convertView.setTag(holder);
+        } else {
+            // skip all the expensive inflation/findViewById
+            // and just get the holder you already made
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         // 取得目前這個Row的JSON資料
         JSONObject jsonObject = (JSONObject) getItem(position);

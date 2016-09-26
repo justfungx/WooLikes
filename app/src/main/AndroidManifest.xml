@@ -23,12 +23,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".TextActivity"
             android:label="@string/activity_text"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+        </activity>
+        <!--*** new add   ***-->
+        <activity android:name=".BoardTextActivity"
+            android:label="@string/activity_text"
+            android:parentActivityName=".BoardListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".BoardListActivity"/>
         </activity>
     </application>
 
