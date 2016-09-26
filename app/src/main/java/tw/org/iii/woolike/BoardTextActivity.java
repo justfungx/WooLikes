@@ -18,7 +18,7 @@ public class BoardTextActivity extends AppCompatActivity {
     WebView mWebView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 設定這個頁面XML的layout名稱
         setContentView(R.layout.activity_boardtext);

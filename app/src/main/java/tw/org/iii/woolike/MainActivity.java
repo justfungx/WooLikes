@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mainListView.setAdapter(mainAdapter);
         mainListView.setOnItemClickListener(this);
 
+
         mDialog = new ProgressDialog(this);
         mDialog.setMessage("網路不穩讀取中..");
         mDialog.setCancelable(false);
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(textIntent);
         //改變進入畫面與離開畫面
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+
     }
 
     @Override
@@ -136,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 loadData();
                 break;
             case R.id.btnBoardList:
+                break;
+            case R.id.btnSearch:
                 break;
         }
         Intent boardListIntent = new Intent(this,BoardListActivity.class);

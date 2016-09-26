@@ -1,6 +1,7 @@
 package tw.org.iii.woolike;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
+import static android.R.attr.type;
+
 /**
  * Created by DUKE-KAO on 2016/9/25.
  */
@@ -33,6 +36,8 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
     private ProgressDialog mDialog;
     private SwipeRefreshLayout mSwipeLayout;
 
+
+    //上方切換按鈕 看板 & 文章
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -59,6 +64,7 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
 //        mainListView.addFooterView(footerView);
 //        footerView.setOnClickListener(this);
 
+        boardListView =  new ListView(this);
         setContentView(R.layout.activity_boardlist);
         boardListView.setOnItemClickListener(this);
 
@@ -97,7 +103,8 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
                         "版面已刷新", Toast.LENGTH_LONG).show();
                 //Log.d("Hot Text:", response.toString());
 
-                boardListAdapter.updateData(response.optJSONArray("list"));
+                //這行載入後 就出現閃退了
+//                boardListAdapter.updateData(response.optJSONArray("list"));
             }
 
             @Override
@@ -131,7 +138,7 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
         Intent textIntent = new Intent(this, TextActivity.class);
         // 將要傳遞的資料放進 Intent
         textIntent.putExtra("bi", bi);
-        textIntent.putExtra("type", ti);
+        textIntent.putExtra("type", type);
 
         // 使用準備好的 Intent 來開啟新的頁面
         startActivity(textIntent);

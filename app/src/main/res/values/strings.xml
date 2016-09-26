@@ -5,4 +5,5 @@
     <string name="BoardListTitle">熱門看板</string>
     <string name="SearchTitle">搜尋</string>
     <string name="add_more">載入更多</string>
+    <string name="boardSearchHeader">搜尋結果</string>
 </resources>
