@@ -27,7 +27,7 @@ public class BoardListAdapter extends BaseAdapter{
         public TextView titleTextView;
         public TextView descTextView;
     }
-    public BoardListAdapter(Context context){
+    public BoardListAdapter(Context context, LayoutInflater layoutInflater){
         mContext = context;
         mInflater = LayoutInflater.from(mContext);
         mJsonArray = new JSONArray();

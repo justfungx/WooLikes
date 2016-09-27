@@ -1,7 +1,6 @@
 package tw.org.iii.woolike;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,11 +27,14 @@ import static android.R.attr.type;
  * Created by DUKE-KAO on 2016/9/25.
  */
 
-public class BoardListActivity extends AppCompatActivity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
+public class BoardListActivity extends AppCompatActivity implements View.OnClickListener,
+        SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
     private Button btnHotText;
     private Button btnBoardList;
+
     private ListView boardListView;
     private BoardListAdapter boardListAdapter;
+
     private ProgressDialog mDialog;
     private SwipeRefreshLayout mSwipeLayout;
 
@@ -64,8 +66,12 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
 //        mainListView.addFooterView(footerView);
 //        footerView.setOnClickListener(this);
 
-        boardListView =  new ListView(this);
+//        boardListView =  new ListView(this);
         setContentView(R.layout.activity_boardlist);
+
+        boardListView =(ListView)findViewById(R.id.board_listview);
+        boardListAdapter = new BoardListAdapter(this,getLayoutInflater());
+        boardListView.setAdapter(boardListAdapter);
         boardListView.setOnItemClickListener(this);
 
 //        ************* new add ***************
@@ -90,7 +96,7 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
 
 //   ***************   * new *    *************************************************************
     private void loadData(){
-        String urlString = "http://disp.cc/api/board.php?act=blist";
+        String urlString = "http://disp.cc/api/get.php?act=bSearchList";
         mDialog.show();
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -104,7 +110,7 @@ public class BoardListActivity extends AppCompatActivity implements View.OnClick
                 //Log.d("Hot Text:", response.toString());
 
                 //這行載入後 就出現閃退了
-//                boardListAdapter.updateData(response.optJSONArray("list"));
+                boardListAdapter.updateData(response.optJSONArray("list"));
             }
 
             @Override
